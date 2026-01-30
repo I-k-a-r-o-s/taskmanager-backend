@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
+import { connectDatabase } from "./config/database.js";
 
 const server = express();
 
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
+    await connectDatabase();
     server.listen(PORT, () => {
       console.log(`Server Started on PORT:${PORT}`);
     });
